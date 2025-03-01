@@ -20,22 +20,22 @@ type Training struct {
 
 func (t *Training) Parse(datastring string) (err error) {
 	val := strings.Split(datastring, ",")
-	if len(val) != 3 {return errors.New("В строке не 3 элемента!\n")}
+	if len(val) != 3 {return errors.New("There are not 3 elements in the datastring!")}
 
 	steps, err := strconv.Atoi(val[0])
     if err != nil {
-        return errors.New("Не удалось получить количество шагов из строки\n")
+        return errors.New("Failed to get steps count from the datastring")
     }
 	t.Steps = steps
 
 	if val[1] != "Бег" && val[1] != "Ходьба" {
-		return errors.New("Не удалось получить известный тип тренировки из строки\n")
+		return errors.New("Failed to get known type of training from the datastring")
 	}
 	t.TrainingType = val[1]
 
 	duration, err := time.ParseDuration(val[2])
 	if err != nil {
-        return errors.New("Не удалось получить время тренировки из строки\n")
+        return errors.New("Failed to get duration of training from the datastring")
     }
 	t.Duration = duration
 

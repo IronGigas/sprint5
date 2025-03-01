@@ -23,17 +23,17 @@ type DaySteps struct {
 
 func (ds *DaySteps) Parse(datastring string) (err error) {
 	val := strings.Split(datastring, ",")
-	if len(val) != 2 {return errors.New("В строке не 2 элемента \n")}
+	if len(val) != 2 {return errors.New("There are not 2 elements in the datastring!")}
 	
     steps, err := strconv.Atoi(val[0])
     if err != nil {
-        return errors.New("Не удалось получить количество шагов из строки\n")
+        return errors.New("Failed to get steps count from the datastring")
     }
 	ds.Steps=steps
 
 	duration, err := time.ParseDuration(val[1])
 	if err != nil {
-        return errors.New("Не удалось получить время тренировки из строки\n")
+        return errors.New("Failed to get duration of training from the datastring")
     }
 	ds.Duration=duration
     
