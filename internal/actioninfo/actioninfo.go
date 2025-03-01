@@ -13,7 +13,7 @@ func Info(dataset []string, dp DataParser) {
 	for _, v := range dataset {
 		err := dp.Parse(v)
 		if err != nil {
-			fmt.Println("Ошибка при парсинге:", err)
+			fmt.Println("Parsing error:", err)
 			continue 
 		}
 		fmt.Println(dp.ActionInfo())

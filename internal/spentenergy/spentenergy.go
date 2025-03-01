@@ -30,7 +30,7 @@ const (
 // duration time.Duration — длительность тренировки.
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) float64 {
 	meanSpeed:=MeanSpeed(steps, duration)
-	return ((walkingCaloriesWeightMultiplier * weight) + (meanSpeed*meanSpeed/height)*walkingSpeedHeightMultiplier) * float64(duration.Hours()) * minInH
+	return ((walkingCaloriesWeightMultiplier * weight) + (meanSpeed*meanSpeed/height)*walkingSpeedHeightMultiplier) * (duration.Hours()) * minInH
 }
 
 
@@ -63,9 +63,7 @@ func MeanSpeed(steps int, duration time.Duration) float64 {
 	if duration <= 0 {
 		return 0
 	}
-
-	dist:=Distance(steps)
-	return dist / float64(duration.Hours())
+	return Distance(steps) / duration.Hours()
 }
 
 
@@ -76,7 +74,7 @@ func MeanSpeed(steps int, duration time.Duration) float64 {
 //
 // steps int — количество совершенных действий (число шагов при ходьбе и беге).
 func Distance(steps int) float64 {
-	return (float64(steps) * float64(lenStep)) / mInKm
+	return (float64(steps) * lenStep) / mInKm
 }
 
 
